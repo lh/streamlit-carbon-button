@@ -112,8 +112,16 @@ carbon_button("Custom Style", colors=custom_colors, key="custom")
 
 See the [streamlit-carbon-button-examples](https://github.com/lh/streamlit-carbon-button-examples) repository for more usage patterns and demos.
 
+## Acknowledgments
+
+This component uses icons from the [IBM Carbon Design System](https://carbondesignsystem.com/):
+- Carbon Icons are licensed under [Apache License 2.0](https://github.com/carbon-design-system/carbon/blob/main/LICENSE)
+- Copyright © IBM Corp. 2016, 2023
+
+Special thanks to the Carbon Design System team for creating such beautiful and accessible design resources.
+
 ## License
 
-MIT License - see [LICENSE](LICENSE) file.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
 
-Icons from [IBM Carbon Design System](https://carbondesignsystem.com/) (Apache 2.0 License).
+The Carbon icons included in this package are licensed under Apache License 2.0 by IBM.

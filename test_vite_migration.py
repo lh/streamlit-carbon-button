@@ -63,12 +63,13 @@ with st.sidebar:
         st.rerun()
 
 # Main test sections
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "1️⃣ Basic Tests", 
     "2️⃣ Visual Tests", 
     "3️⃣ Interaction Tests",
     "4️⃣ Build Tests",
-    "5️⃣ Performance"
+    "5️⃣ Performance",
+    "🧪 Default Button Experiments"
 ])
 
 # Tab 1: Basic Tests
@@ -367,6 +368,188 @@ with tab5:
     
     render_time = time.time() - start_time
     st.metric("Render Time", f"{render_time * 1000:.1f} ms")
+
+# Tab 6: Default Button Experiments
+with tab6:
+    st.header("🧪 Default Button Experiments")
+    st.write("Exploring visual indicators for default/primary actions")
+    
+    # CSS injection for animations
+    st.markdown("""
+    <style>
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.9; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes glow {
+        0% { box-shadow: 0 0 5px rgba(80, 228, 224, 0.5); }
+        50% { box-shadow: 0 0 20px rgba(80, 228, 224, 0.8), 0 0 30px rgba(80, 228, 224, 0.4); }
+        100% { box-shadow: 0 0 5px rgba(80, 228, 224, 0.5); }
+    }
+    
+    @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+    }
+    
+    .pulse-button > iframe {
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .glow-button > iframe {
+        animation: glow 2s ease-in-out infinite;
+        border-radius: 4px;
+    }
+    
+    .breathe-button > iframe {
+        animation: breathe 3s ease-in-out infinite;
+    }
+    
+    .elevated-button > iframe {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+    
+    .ring-button > iframe {
+        box-shadow: 0 0 0 3px rgba(80, 228, 224, 0.5);
+        border-radius: 4px;
+    }
+    
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        .pulse-button > iframe,
+        .glow-button > iframe,
+        .breathe-button > iframe {
+            animation: none;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.subheader("1. Animation Styles")
+    st.write("Different animation effects to draw attention to default actions")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.write("**Pulse Effect**")
+        with st.container():
+            st.markdown('<div class="pulse-button">', unsafe_allow_html=True)
+            if carbon_button("Get Started", key="pulse_demo", button_type="primary"):
+                st.success("Pulse button clicked!")
+            st.markdown('</div>', unsafe_allow_html=True)
+        st.caption("Subtle scale animation")
+    
+    with col2:
+        st.write("**Glow Effect**")
+        with st.container():
+            st.markdown('<div class="glow-button">', unsafe_allow_html=True)
+            if carbon_button("Get Started", key="glow_demo", button_type="primary"):
+                st.success("Glow button clicked!")
+            st.markdown('</div>', unsafe_allow_html=True)
+        st.caption("Animated shadow glow")
+    
+    with col3:
+        st.write("**Breathe Effect**")
+        with st.container():
+            st.markdown('<div class="breathe-button">', unsafe_allow_html=True)
+            if carbon_button("Get Started", key="breathe_demo", button_type="primary"):
+                st.success("Breathe button clicked!")
+            st.markdown('</div>', unsafe_allow_html=True)
+        st.caption("Gentle breathing animation")
+    
+    st.subheader("2. Static Emphasis Styles")
+    st.write("Non-animated ways to emphasize default actions")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.write("**Elevated Style**")
+        with st.container():
+            st.markdown('<div class="elevated-button">', unsafe_allow_html=True)
+            if carbon_button("Get Started", key="elevated_demo", button_type="primary"):
+                st.success("Elevated button clicked!")
+            st.markdown('</div>', unsafe_allow_html=True)
+        st.caption("Raised appearance with shadow")
+    
+    with col2:
+        st.write("**Ring Indicator**")
+        with st.container():
+            st.markdown('<div class="ring-button">', unsafe_allow_html=True)
+            if carbon_button("Get Started", key="ring_demo", button_type="primary"):
+                st.success("Ring button clicked!")
+            st.markdown('</div>', unsafe_allow_html=True)
+        st.caption("Teal ring around button")
+    
+    st.subheader("3. Context Examples")
+    st.write("How default indicators work in real UI contexts")
+    
+    # Example 1: Form submission
+    st.write("**Form Example**")
+    with st.container():
+        col1, col2, col3 = st.columns([2, 1, 1])
+        with col1:
+            st.text_input("Email", placeholder="Enter your email", key="demo_email")
+        with col2:
+            st.markdown('<div class="pulse-button">', unsafe_allow_html=True)
+            if carbon_button("Subscribe", key="subscribe", button_type="primary", icon=CarbonIcons.SUCCESS):
+                st.success("Subscribed!")
+            st.markdown('</div>', unsafe_allow_html=True)
+        with col3:
+            if carbon_button("Cancel", key="cancel_sub", button_type="ghost"):
+                st.info("Cancelled")
+    
+    # Example 2: Action group
+    st.write("**Action Group Example**")
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        if carbon_button("Save Draft", key="save_draft", button_type="secondary"):
+            st.info("Draft saved")
+    
+    with col2:
+        st.markdown('<div class="glow-button">', unsafe_allow_html=True)
+        if carbon_button("Publish", key="publish", button_type="primary", icon=CarbonIcons.UPLOAD):
+            st.success("Published!")
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with col3:
+        if carbon_button("Preview", key="preview", button_type="ghost"):
+            st.info("Preview mode")
+    
+    with col4:
+        if carbon_button("Delete", key="delete_draft", button_type="danger"):
+            st.error("Deleted")
+    
+    st.subheader("4. Accessibility Notes")
+    st.info("""
+    **Best Practices for Default Button Indicators:**
+    
+    - ✅ **Respect prefers-reduced-motion**: Animations are disabled for users who prefer reduced motion
+    - ✅ **Don't rely only on animation**: Static styles (elevation, ring) provide alternatives
+    - ✅ **Maintain contrast**: Ensure animations don't reduce text readability
+    - ✅ **Use semantic HTML**: The primary button should also be the default form action
+    - ✅ **Position matters**: Default actions often appear on the right or bottom
+    - ✅ **One per context**: Only one button should have default emphasis per section
+    """)
+    
+    st.subheader("5. Implementation Ideas")
+    st.code("""
+# Future API could look like:
+carbon_button(
+    "Get Started",
+    button_type="primary",
+    is_default=True,  # New prop
+    default_style="pulse"  # or "glow", "breathe", "elevated", "ring"
+)
+
+# Or automatic for primary buttons in certain contexts:
+with st.form("my_form"):
+    # ... form fields ...
+    carbon_button("Submit", button_type="primary", is_default=True)
+    """, language="python")
 
 # Summary
 st.divider()

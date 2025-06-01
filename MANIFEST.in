@@ -1,1 +1,7 @@
-recursive-include briquette/frontend *
+recursive-include streamlit_carbon_button/frontend *
+include README_PYPI.md
+include LICENSE
+exclude *.pyc
+exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store

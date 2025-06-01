@@ -1,0 +1,4 @@
+streamlit>=1.0.0
+streamlit-carbon-button
+pandas  # For dashboard examples
+plotly  # For dashboard examples

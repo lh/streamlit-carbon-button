@@ -92,7 +92,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
       return <div style={{ padding: "10px", border: "1px solid #ccc" }}>Loading Carbon Button...</div>
     }
     
-    const { label, icon, buttonType, disabled, useContainerWidth, colors } = this.props.args
+    const { label, icon, buttonType, disabled, useContainerWidth, colors, isDefault, ariaLabel } = this.props.args
     
     // Debug: Log what we're receiving
     console.log("Carbon Button Debug:", { 
@@ -125,6 +125,15 @@ class CarbonButton extends StreamlitComponentBase<State> {
       padding = "0.75rem 1.25rem 0.75rem 0.875rem"
     }
 
+    // Apply teal shadow for default buttons
+    let boxShadow = buttonType === "secondary" ? "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05)" : "none"
+    let transform = "translateY(0)"
+    
+    if (isDefault && !disabled) {
+      boxShadow = "0 4px 12px rgba(80, 228, 224, 0.4)"
+      transform = "translateY(-2px)"
+    }
+
     const buttonStyle: React.CSSProperties = {
       backgroundColor: this.getBackgroundColor(buttonType),
       color: this.getTextColor(buttonType),
@@ -142,9 +151,13 @@ class CarbonButton extends StreamlitComponentBase<State> {
       fontFamily: '"IBM Plex Sans", system-ui, -apple-system, sans-serif',
       lineHeight: 1,
       opacity: disabled ? 0.5 : 1,
-      boxShadow: buttonType === "secondary" ? "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05)" : "none",
+      boxShadow: boxShadow,
+      transform: transform,
       outline: "none",
     }
+
+    // Generate aria-label
+    const computedAriaLabel = ariaLabel || (isIconOnly ? label || "Icon button" : undefined)
 
     return (
       <button
@@ -156,6 +169,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
         onMouseLeave={(e) => this.handleHover(e, false)}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
+        aria-label={computedAriaLabel}
       >
         <div className="carbon-button-content">
           {hasIcon && (
@@ -338,19 +352,34 @@ class CarbonButton extends StreamlitComponentBase<State> {
   private handleHover = (e: React.MouseEvent<HTMLButtonElement>, isHover: boolean) => {
     const button = e.currentTarget
     const type = this.props.args.buttonType || "primary"
+    const isDefault = this.props.args.isDefault
     
     if (isHover) {
       button.style.backgroundColor = this.getHoverBackgroundColor(type)
       button.style.color = this.getHoverTextColor(type)
       button.style.borderColor = this.getHoverBorderColor(type)
-      button.style.transform = "translateY(-1px)"
-      button.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.15)"
+      
+      if (isDefault) {
+        // Enhanced hover for default buttons
+        button.style.transform = "translateY(-3px)"
+        button.style.boxShadow = "0 6px 16px rgba(80, 228, 224, 0.5)"
+      } else {
+        button.style.transform = "translateY(-1px)"
+        button.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.15)"
+      }
     } else {
       button.style.backgroundColor = this.getBackgroundColor(type)
       button.style.color = this.getTextColor(type)
       button.style.borderColor = this.getBorderColor(type)
-      button.style.transform = "translateY(0)"
-      button.style.boxShadow = type === "secondary" ? "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05)" : "none"
+      
+      if (isDefault) {
+        // Return to default button state
+        button.style.transform = "translateY(-2px)"
+        button.style.boxShadow = "0 4px 12px rgba(80, 228, 224, 0.4)"
+      } else {
+        button.style.transform = "translateY(0)"
+        button.style.boxShadow = type === "secondary" ? "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05)" : "none"
+      }
     }
   }
   

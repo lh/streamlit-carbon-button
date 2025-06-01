@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streamlit-carbon-button"
+version = "1.0.0"
+description = "Carbon Design System buttons for Streamlit"
+readme = "README_PYPI.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+maintainers = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: User Interfaces",
+]
+keywords = ["streamlit", "carbon", "design-system", "buttons", "ui", "components"]
+dependencies = [
+    "streamlit>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/streamlit-carbon-button-dev"
+Documentation = "https://github.com/yourusername/streamlit-carbon-button-examples"
+Repository = "https://github.com/yourusername/streamlit-carbon-button-dev"
+Issues = "https://github.com/yourusername/streamlit-carbon-button-dev/issues"
+Examples = "https://github.com/yourusername/streamlit-carbon-button-examples"
+
+[tool.setuptools]
+packages = ["streamlit_carbon_button"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+streamlit_carbon_button = ["frontend/**/*"]

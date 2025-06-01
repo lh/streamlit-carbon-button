@@ -2,28 +2,30 @@
 
 Beautiful, accessible buttons for Streamlit using IBM's Carbon Design System.
 
+[![PyPI version](https://badge.fury.io/py/streamlit-carbon-button.svg)](https://pypi.org/project/streamlit-carbon-button/)
 [![Live Demo](https://img.shields.io/badge/demo-streamlit-FF4B4B)](https://carbon-button-demo.streamlit.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
 
-- 🎨 **Subtle Styling** - Elegant grey buttons with teal accent
+- 🎨 **Carbon Design** - Beautiful buttons following IBM's design system
 - 🌓 **Dark Mode** - Automatic adaptation to system preferences
-- 🎯 **18 Carbon Icons** - Crisp SVG icons at 20px size
-- ♿ **Accessible** - Following Carbon Design principles
-- 🚀 **Easy Install** - No JavaScript build required
+- 🎯 **200+ Icons** - Full Carbon icon library included
+- ♿ **Accessible** - ARIA labels with automatic support for icon-only buttons
+- ✨ **Default Button** - Visual "press me" indicator with teal shadow
+- 🚀 **Easy Install** - Available on PyPI
 
 ## Installation
 
 ```bash
-pip install git+https://github.com/lh/streamlit-carbon-button.git
+pip install streamlit-carbon-button
 ```
 
 ## Quick Start
 
 ```python
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 # Basic button
 if carbon_button("Click Me", key="button1"):
@@ -43,6 +45,9 @@ carbon_button("Secondary", key="p2", button_type="secondary")
 carbon_button("Danger", key="p3", button_type="danger")
 carbon_button("Ghost", key="p4", button_type="ghost")
 
+# Default button with visual indicator
+carbon_button("Click Me First!", key="default", is_default=True)
+
 # Full width button
 carbon_button("Process All", key="process", use_container_width=True)
 ```
@@ -50,7 +55,7 @@ carbon_button("Process All", key="process", use_container_width=True)
 ## Available Icons
 
 ```python
-from briquette import CarbonIcons
+from streamlit_carbon_button import CarbonIcons
 
 # File operations
 CarbonIcons.UPLOAD      CarbonIcons.DOWNLOAD    CarbonIcons.SAVE
@@ -88,6 +93,8 @@ carbon_button("Custom Style", colors=custom_colors, key="custom")
 - `disabled` (bool, optional): Disable the button
 - `use_container_width` (bool, optional): Expand to full container width
 - `colors` (dict, optional): Custom color scheme
+- `is_default` (bool, optional): Show visual indicator for default button
+- `aria_label` (str, optional): Custom ARIA label for accessibility
 
 ## Color Scheme
 
@@ -103,7 +110,7 @@ carbon_button("Custom Style", colors=custom_colors, key="custom")
 
 ## Examples
 
-See the [examples](examples/) directory for more usage patterns.
+See the [streamlit-carbon-button-examples](https://github.com/lh/streamlit-carbon-button-examples) repository for more usage patterns and demos.
 
 ## License
 

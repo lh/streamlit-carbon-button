@@ -44,7 +44,12 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 include = ["streamlit_carbon_button"]
-exclude = ["streamlit_carbon_button.frontend*"]
+exclude = [
+    "streamlit_carbon_button.frontend",
+    "streamlit_carbon_button.frontend.*",
+    "streamlit_carbon_button.frontend.static",
+    "streamlit_carbon_button.frontend.static.*"
+]
 
 [tool.setuptools.package-data]
 streamlit_carbon_button = ["frontend/**/*"]

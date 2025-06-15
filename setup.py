@@ -55,11 +55,7 @@ setup(
         "Tracker": "https://github.com/yourusername/streamlit-carbon-button-dev/issues",
         "Examples": "https://github.com/yourusername/streamlit-carbon-button-examples",
     },
-    packages=["streamlit_carbon_button"],
-    include_package_data=True,
-    package_data={
-        "streamlit_carbon_button": ["frontend/**/*"],
-    },
+    # Package configuration is now in pyproject.toml
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",

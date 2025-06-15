@@ -10,7 +10,7 @@ Beautiful Carbon Design System buttons for your Streamlit apps! 🎨
 
 - 🎯 **Carbon Design System** - Professional IBM design language
 - 🎨 **4 Button Types** - Primary, Secondary, Danger, and Ghost
-- 🔧 **18 Carbon Icons** - Pre-integrated SVG icons
+- 🔧 **100+ Carbon Icons** - Extensive library of pre-integrated SVG icons
 - ✨ **Default Button** - Teal shadow indicator for primary actions
 - 📱 **Responsive** - Adapts to container width
 - 🌓 **Dark Mode** - Automatic theme detection

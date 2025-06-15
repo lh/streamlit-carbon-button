@@ -10,7 +10,7 @@ Beautiful, accessible buttons for Streamlit using IBM's Carbon Design System.
 
 - 🎨 **Carbon Design** - Beautiful buttons following IBM's design system
 - 🌓 **Dark Mode** - Automatic adaptation to system preferences
-- 🎯 **200+ Icons** - Full Carbon icon library included
+- 🎯 **100+ Icons** - Extensive Carbon icon library included
 - ♿ **Accessible** - ARIA labels with automatic support for icon-only buttons
 - ✨ **Default Button** - Visual "press me" indicator with teal shadow
 - 🚀 **Easy Install** - Available on PyPI

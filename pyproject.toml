@@ -18,7 +18,6 @@ maintainers = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -43,6 +42,10 @@ Examples = "https://github.com/yourusername/streamlit-carbon-button-examples"
 [tool.setuptools]
 packages = ["streamlit_carbon_button"]
 include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["streamlit_carbon_button"]
+exclude = ["streamlit_carbon_button.frontend*"]
 
 [tool.setuptools.package-data]
 streamlit_carbon_button = ["frontend/**/*"]

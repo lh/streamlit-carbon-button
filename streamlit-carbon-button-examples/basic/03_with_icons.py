@@ -3,7 +3,7 @@ Using Carbon icons with buttons.
 """
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("Carbon Buttons with Icons")
 st.write("Enhance your buttons with 18 available Carbon icons.")

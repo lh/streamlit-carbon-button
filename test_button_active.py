@@ -1,7 +1,7 @@
 """Quick test to check if buttons still turn teal when pressed"""
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("Test Button Active State")
 st.write("Click and hold to see if button turns teal")

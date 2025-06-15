@@ -4,7 +4,7 @@ Shows what the animations would look like
 """
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.set_page_config(page_title="Default Button Animations Demo", layout="wide")
 

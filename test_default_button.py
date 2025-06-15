@@ -1,7 +1,7 @@
 """Test the default button feature with teal shadow"""
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.set_page_config(page_title="Default Button Test", layout="wide")
 

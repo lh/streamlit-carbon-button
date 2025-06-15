@@ -3,7 +3,7 @@ Demonstrates all four button types in the Carbon Design System.
 """
 
 import streamlit as st
-from briquette import carbon_button
+from streamlit_carbon_button import carbon_button
 
 st.title("Carbon Button Types")
 st.write("Carbon Design System includes four button types, each with a specific purpose.")

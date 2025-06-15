@@ -3,7 +3,7 @@ Dynamic default button switching based on application state.
 """
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("Dynamic Default Buttons")
 st.write("Change which button is marked as default based on your app's state.")

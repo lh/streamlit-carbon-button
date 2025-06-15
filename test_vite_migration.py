@@ -81,12 +81,12 @@ with tab1:
     with col1:
         st.subheader("Import Test")
         try:
-            from briquette import carbon_button, CarbonIcons
+            from streamlit_carbon_button import carbon_button, CarbonIcons
             st.success("✅ Import successful")
             st.session_state.test_results['import'] = True
             
             # Show component info
-            import briquette
+            import streamlit_carbon_button
             with st.expander("Component Info"):
                 st.write("Module location:", briquette.__file__)
                 st.write("Component function:", type(briquette._component_func))

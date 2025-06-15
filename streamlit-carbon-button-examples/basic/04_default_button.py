@@ -3,7 +3,7 @@ Demonstrating the default button feature with teal shadow.
 """
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("Default Button Feature")
 st.write("Use `is_default=True` to add a subtle teal shadow that indicates the primary action.")

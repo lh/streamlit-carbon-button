@@ -3,7 +3,7 @@ Icon-only buttons for toolbars and compact interfaces.
 """
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("Icon-Only Buttons")
 st.write("Create compact, professional toolbars with icon-only Carbon buttons.")

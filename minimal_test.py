@@ -14,11 +14,11 @@ st.write("Dev mode:", os.environ.get("STREAMLIT_CARBON_BUTTON_DEV_MODE", "not se
 
 # Try to import
 try:
-    from briquette import carbon_button, CarbonIcons
+    from streamlit_carbon_button import carbon_button, CarbonIcons
     st.success("✅ Import successful")
     
     # Get component info
-    import briquette
+    import streamlit_carbon_button
     st.write("Module location:", briquette.__file__)
     
     # Check component function

@@ -1,6 +1,6 @@
 """Quick test of Vite-built carbon button"""
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("🚀 Vite Migration Test")
 

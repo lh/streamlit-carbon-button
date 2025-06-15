@@ -1,7 +1,7 @@
 """Test icon-only buttons with default feature"""
 
 import streamlit as st
-from briquette import carbon_button, CarbonIcons
+from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.set_page_config(page_title="Icon-Only Default Buttons", layout="wide")
 

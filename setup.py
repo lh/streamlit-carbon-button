@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 
 # Read version from package
-version = "1.1.0"
+version = "1.2.0"
 
 # Use README_PYPI.md if it exists, otherwise fall back to README.md
 readme_file = "README_PYPI.md" if os.path.exists("README_PYPI.md") else "README.md"

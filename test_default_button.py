@@ -8,7 +8,9 @@ st.set_page_config(page_title="Default Button Test", layout="wide")
 st.title("🎯 Default Button Feature Test")
 st.write("Testing the teal shadow indicator for default buttons")
 
-st.info("Click and hold any button to see it turn teal. The default button has a teal shadow.")
+st.info(
+    "Click and hold any button to see it turn teal. The default button has a teal shadow."
+)
 
 # Test 1: Form context
 st.header("1. Form Context")
@@ -20,7 +22,13 @@ with col1:
     st.text_input("Enter your email", placeholder="you@example.com", key="email_test")
 
 with col2:
-    if carbon_button("Submit", key="submit", button_type="primary", icon=CarbonIcons.SUCCESS, is_default=True):
+    if carbon_button(
+        "Submit",
+        key="submit",
+        button_type="primary",
+        icon=CarbonIcons.SUCCESS,
+        is_default=True,
+    ):
         st.success("Form submitted!")
         st.balloons()
 
@@ -39,7 +47,13 @@ with col1:
         st.info("Draft saved")
 
 with col2:
-    if carbon_button("Publish", key="publish", button_type="primary", icon=CarbonIcons.UPLOAD, is_default=True):
+    if carbon_button(
+        "Publish",
+        key="publish",
+        button_type="primary",
+        icon=CarbonIcons.UPLOAD,
+        is_default=True,
+    ):
         st.success("Published! 🎉")
 
 with col3:
@@ -47,7 +61,9 @@ with col3:
         st.info("Opening preview...")
 
 with col4:
-    if carbon_button("Delete", key="delete", button_type="danger", icon=CarbonIcons.DELETE):
+    if carbon_button(
+        "Delete", key="delete", button_type="danger", icon=CarbonIcons.DELETE
+    ):
         st.error("Deleted")
 
 # Test 3: Dialog buttons
@@ -55,14 +71,18 @@ st.header("3. Dialog Context")
 st.write("The 'Yes, Delete' button is marked as default (even though it's dangerous)")
 
 with st.container():
-    st.warning("Are you sure you want to delete this item? This action cannot be undone.")
-    
+    st.warning(
+        "Are you sure you want to delete this item? This action cannot be undone."
+    )
+
     col1, col2, col3 = st.columns([1, 1, 3])
-    
+
     with col1:
-        if carbon_button("Yes, Delete", key="confirm_delete", button_type="danger", is_default=True):
+        if carbon_button(
+            "Yes, Delete", key="confirm_delete", button_type="danger", is_default=True
+        ):
             st.error("Item deleted permanently!")
-    
+
     with col2:
         if carbon_button("Cancel", key="cancel_delete", button_type="ghost"):
             st.info("Action cancelled")
@@ -83,7 +103,9 @@ button_configs = [
 for i, (col, (label, btn_type, is_def)) in enumerate(zip(cols, button_configs)):
     with col:
         st.write(f"**{label}**")
-        if carbon_button(label, key=f"test_{i}", button_type=btn_type, is_default=is_def):
+        if carbon_button(
+            label, key=f"test_{i}", button_type=btn_type, is_default=is_def
+        ):
             st.success(f"{label} clicked!")
 
 # Test 5: State changes
@@ -101,14 +123,17 @@ with col1:
 with col2:
     st.write("**Default Button States:**")
     st.caption("Teal shadow → Enhanced hover → Active (teal)")
-    if carbon_button("Test States", key="state_default", button_type="primary", is_default=True):
+    if carbon_button(
+        "Test States", key="state_default", button_type="primary", is_default=True
+    ):
         st.write("Default button clicked")
 
 # Visual guide
 st.divider()
 st.header("Visual Guide")
 
-st.markdown("""
+st.markdown(
+    """
 **What to look for:**
 
 1. **Default buttons** have a subtle teal shadow and are slightly elevated
@@ -121,7 +146,10 @@ st.markdown("""
 - Primary actions in dialogs
 - The most likely next action in a workflow
 - Dangerous actions that need confirmation (to prevent accidental clicks elsewhere)
-""")
+"""
+)
 
 st.divider()
-st.caption("💡 Tip: The teal shadow color matches the active state color, creating visual consistency")
+st.caption(
+    "💡 Tip: The teal shadow color matches the active state color, creating visual consistency"
+)

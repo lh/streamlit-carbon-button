@@ -80,7 +80,7 @@ col1, col2 = st.columns(2)
 with col1:
     if carbon_button("Save", is_default=True):
         st.success("Saved!")
-        
+
 with col2:
     if carbon_button("Cancel", button_type="ghost"):
         st.info("Cancelled")
@@ -97,7 +97,7 @@ cols = st.columns(4)
 with cols[0]:
     if carbon_button("", icon=CarbonIcons.ADD):
         st.info("Add")
-        
+
 with cols[1]:
     if carbon_button("", icon=CarbonIcons.EDIT):
         st.info("Edit")

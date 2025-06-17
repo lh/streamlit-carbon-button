@@ -66,7 +66,7 @@ icons = [
     (CarbonIcons.SAVE, "Save"),
     (CarbonIcons.VIEW, "View"),
     (CarbonIcons.FILTER, "Filter"),
-    (CarbonIcons.SEARCH, "Search")
+    (CarbonIcons.SEARCH, "Search"),
 ]
 
 for idx, (icon, name) in enumerate(icons):
@@ -81,27 +81,31 @@ st.header("Practical Example: Data Table Actions")
 data = {
     "Name": ["Alice", "Bob", "Charlie"],
     "Status": ["Active", "Inactive", "Active"],
-    "Score": [95, 82, 88]
+    "Score": [95, 82, 88],
 }
 
 for idx, name in enumerate(data["Name"]):
     col1, col2, col3, col4, col5 = st.columns([3, 2, 1, 1, 1])
-    
+
     with col1:
         st.write(f"**{name}**")
-    
+
     with col2:
         st.write(data["Status"][idx])
-    
+
     with col3:
         st.write(data["Score"][idx])
-    
+
     with col4:
-        if carbon_button("", icon=CarbonIcons.EDIT, key=f"edit_{idx}", button_type="ghost"):
+        if carbon_button(
+            "", icon=CarbonIcons.EDIT, key=f"edit_{idx}", button_type="ghost"
+        ):
             st.info(f"Edit {name}")
-    
+
     with col5:
-        if carbon_button("", icon=CarbonIcons.DELETE, key=f"delete_{idx}", button_type="ghost"):
+        if carbon_button(
+            "", icon=CarbonIcons.DELETE, key=f"delete_{idx}", button_type="ghost"
+        ):
             st.warning(f"Delete {name}")
 
 # File operations

@@ -18,7 +18,12 @@ if carbon_button("Save", icon=CarbonIcons.SAVE, button_type="secondary"):
     st.info("Save button clicked")
 
 # Test icon-only with aria
-if carbon_button("Delete item", icon=CarbonIcons.DELETE, button_type="danger", aria_label="Delete selected items permanently"):
+if carbon_button(
+    "Delete item",
+    icon=CarbonIcons.DELETE,
+    button_type="danger",
+    aria_label="Delete selected items permanently",
+):
     st.error("Delete clicked")
 
 st.success("✅ All imports working from streamlit_carbon_button package!")

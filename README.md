@@ -41,7 +41,7 @@ if carbon_button("", icon=CarbonIcons.SETTINGS, key="settings"):
 
 # Different button types
 carbon_button("Primary", key="p1", button_type="primary")
-carbon_button("Secondary", key="p2", button_type="secondary")  
+carbon_button("Secondary", key="p2", button_type="secondary")
 carbon_button("Danger", key="p3", button_type="danger")
 carbon_button("Ghost", key="p4", button_type="ghost")
 
@@ -61,7 +61,7 @@ from streamlit_carbon_button import CarbonIcons
 CarbonIcons.UPLOAD      CarbonIcons.DOWNLOAD    CarbonIcons.SAVE
 CarbonIcons.COPY        CarbonIcons.DELETE      CarbonIcons.DOCUMENT
 
-# Navigation  
+# Navigation
 CarbonIcons.HOME        CarbonIcons.SEARCH      CarbonIcons.SETTINGS
 CarbonIcons.FILTER      CarbonIcons.INFO        CarbonIcons.HELP
 

@@ -12,20 +12,22 @@ st.write("Shows how to change which button is the default based on application s
 st.header("1. Save Workflow Example")
 
 # Initialize state
-if 'unsaved_changes' not in st.session_state:
+if "unsaved_changes" not in st.session_state:
     st.session_state.unsaved_changes = False
-if 'confirm_mode' not in st.session_state:
+if "confirm_mode" not in st.session_state:
     st.session_state.confirm_mode = False
 
 # Simulate making changes
 col1, col2 = st.columns([3, 1])
 with col1:
-    text = st.text_area("Document content", value="Edit this text to enable save...", key="doc_content")
-    
+    text = st.text_area(
+        "Document content", value="Edit this text to enable save...", key="doc_content"
+    )
+
     # Detect changes
-    if 'last_content' not in st.session_state:
+    if "last_content" not in st.session_state:
         st.session_state.last_content = text
-    
+
     if text != st.session_state.last_content:
         st.session_state.unsaved_changes = True
 
@@ -41,12 +43,13 @@ col1, col2, col3 = st.columns(3)
 with col1:
     # Save button is default when there are unsaved changes and we're not in confirm mode
     if carbon_button(
-        "Save", 
+        "Save",
         key="save_btn",
         button_type="primary",
         icon=CarbonIcons.SAVE,
-        is_default=st.session_state.unsaved_changes and not st.session_state.confirm_mode,
-        disabled=not st.session_state.unsaved_changes
+        is_default=st.session_state.unsaved_changes
+        and not st.session_state.confirm_mode,
+        disabled=not st.session_state.unsaved_changes,
     ):
         st.session_state.confirm_mode = True
 
@@ -54,11 +57,11 @@ with col2:
     # This button becomes default when in confirm mode
     if st.session_state.confirm_mode:
         if carbon_button(
-            "Are you sure?", 
+            "Are you sure?",
             key="confirm_save",
             button_type="danger",
             icon=CarbonIcons.WARNING,
-            is_default=True
+            is_default=True,
         ):
             st.session_state.last_content = text
             st.session_state.unsaved_changes = False
@@ -75,7 +78,7 @@ with col3:
 st.header("2. Multi-Step Form Example")
 
 # Initialize step
-if 'form_step' not in st.session_state:
+if "form_step" not in st.session_state:
     st.session_state.form_step = 1
 
 # Progress indicator
@@ -88,12 +91,12 @@ if st.session_state.form_step == 1:
     st.subheader("Personal Information")
     name = st.text_input("Full Name", key="form_name")
     email = st.text_input("Email", key="form_email")
-    
+
 elif st.session_state.form_step == 2:
     st.subheader("Preferences")
     st.selectbox("Favorite Color", ["Red", "Blue", "Green"], key="form_color")
     st.slider("Experience Level", 1, 10, 5, key="form_level")
-    
+
 else:
     st.subheader("Review & Submit")
     st.write("**Summary:**")
@@ -116,22 +119,22 @@ with col2:
     if st.session_state.form_step < 3:
         # "Next" is default for steps 1 and 2
         if carbon_button(
-            "Next", 
+            "Next",
             key="next_step",
             button_type="primary",
             icon=CarbonIcons.PLAY,
-            is_default=True
+            is_default=True,
         ):
             st.session_state.form_step += 1
             st.rerun()
     else:
         # "Submit" is default for the final step
         if carbon_button(
-            "Submit", 
+            "Submit",
             key="submit_form",
             button_type="primary",
             icon=CarbonIcons.SUCCESS,
-            is_default=True
+            is_default=True,
         ):
             st.success("Form submitted successfully! 🎉")
             st.balloons()
@@ -151,38 +154,38 @@ st.header("3. Context-Sensitive Default")
 action = st.radio(
     "What would you like to do?",
     ["View Report", "Edit Data", "Delete Record"],
-    horizontal=True
+    horizontal=True,
 )
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     if carbon_button(
-        "View", 
+        "View",
         key="view_btn",
         button_type="primary" if action == "View Report" else "secondary",
         icon=CarbonIcons.DOCUMENT,
-        is_default=action == "View Report"
+        is_default=action == "View Report",
     ):
         st.info("Viewing report...")
 
 with col2:
     if carbon_button(
-        "Edit", 
+        "Edit",
         key="edit_btn",
         button_type="primary" if action == "Edit Data" else "secondary",
         icon=CarbonIcons.SETTINGS,
-        is_default=action == "Edit Data"
+        is_default=action == "Edit Data",
     ):
         st.info("Opening editor...")
 
 with col3:
     if carbon_button(
-        "Delete", 
+        "Delete",
         key="delete_btn",
         button_type="danger",
         icon=CarbonIcons.DELETE,
-        is_default=action == "Delete Record"
+        is_default=action == "Delete Record",
     ):
         st.error("Record deleted!")
 
@@ -192,7 +195,8 @@ with col4:
 
 # Tips
 st.divider()
-st.info("""
+st.info(
+    """
 **How Dynamic Default Buttons Work:**
 
 1. **State-based**: Use `st.session_state` to track which button should be default
@@ -205,4 +209,5 @@ st.info("""
 - Use `st.rerun()` when needed to update button states
 - Consider the user's most likely next action
 - Default can change based on form completion, validation state, or user choices
-""")
+"""
+)

@@ -6,7 +6,9 @@ import streamlit as st
 from streamlit_carbon_button import carbon_button
 
 st.title("Carbon Button Types")
-st.write("Carbon Design System includes four button types, each with a specific purpose.")
+st.write(
+    "Carbon Design System includes four button types, each with a specific purpose."
+)
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -47,14 +49,15 @@ for col, btn_type in zip(cols, types):
         carbon_button(
             f"{btn_type.title()} Button",
             key=f"compare_{btn_type}",
-            button_type=btn_type
+            button_type=btn_type,
         )
 
 # Best practices
 st.divider()
 st.subheader("Best Practices")
 
-st.info("""
+st.info(
+    """
 **When to use each type:**
 
 🔵 **Primary**: One per section, for the main action (Save, Submit, Continue)
@@ -64,4 +67,5 @@ st.info("""
 🔴 **Danger**: Destructive actions that can't be undone (Delete, Remove)
 
 👻 **Ghost**: Low-emphasis actions (Help, Learn more, Advanced settings)
-""")
+"""
+)

@@ -161,7 +161,7 @@ carbon_button(
 with st.form("my_form"):
     st.text_input("Email")
     st.text_input("Password", type="password")
-    
+
     col1, col2 = st.columns(2)
     with col1:
         submitted = carbon_button("Sign In", button_type="primary", is_default=True)

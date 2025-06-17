@@ -58,7 +58,7 @@ Shows how to use the default button indicator:
 with st.form("login"):
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    
+
     if carbon_button("Sign In", is_default=True):
         st.success(f"Welcome, {username}!")
 ```

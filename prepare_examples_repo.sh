@@ -75,7 +75,7 @@ Shows how to use the default button indicator:
 with st.form("login"):
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    
+
     if carbon_button("Sign In", is_default=True):
         st.success(f"Welcome, {username}!")
 ```
@@ -257,7 +257,7 @@ icon_categories = {
 for category, icons in icon_categories.items():
     st.write(f"**{category}**")
     cols = st.columns(len(icons))
-    
+
     for col, (name, icon) in zip(cols, icons):
         with col:
             if carbon_button(name, icon=icon, key=f"icon_{name}"):
@@ -273,7 +273,7 @@ with col1:
     st.write("**File Operations**")
     if carbon_button("Upload File", icon=CarbonIcons.UPLOAD, button_type="primary"):
         st.info("Opening file picker...")
-    
+
     if carbon_button("Download Report", icon=CarbonIcons.DOWNLOAD, button_type="secondary"):
         st.info("Downloading...")
 
@@ -281,7 +281,7 @@ with col2:
     st.write("**Form Actions**")
     if carbon_button("Save Draft", icon=CarbonIcons.SAVE, button_type="secondary"):
         st.success("Draft saved!")
-    
+
     if carbon_button("Delete Draft", icon=CarbonIcons.DELETE, button_type="danger"):
         st.error("Draft deleted!")
 
@@ -347,15 +347,15 @@ with st.form("login_form"):
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     remember = st.checkbox("Remember me")
-    
+
     col1, col2 = st.columns([1, 1])
-    
+
     with col1:
         # Sign In is the default action
         submitted = st.form_submit_button("Sign In")
         if submitted and carbon_button("Sign In", is_default=True, icon=CarbonIcons.SUCCESS):
             st.success(f"Welcome back, {username}!")
-    
+
     with col2:
         if carbon_button("Forgot Password?", button_type="ghost"):
             st.info("Password reset link sent!")
@@ -467,27 +467,27 @@ col1, col2, col3 = st.columns([1, 3, 1])
 
 with col2:
     media_controls = st.columns(5)
-    
+
     # Previous
     with media_controls[0]:
         if carbon_button("", icon=CarbonIcons.PLAY, button_type="ghost", key="prev"):
             st.info("⏮️ Previous track")
-    
+
     # Stop
     with media_controls[1]:
         if carbon_button("", icon=CarbonIcons.CLOSE, button_type="secondary", key="stop"):
             st.info("⏹️ Stopped")
-    
+
     # Play (default)
     with media_controls[2]:
         if carbon_button("", icon=CarbonIcons.PLAY, button_type="primary", is_default=True, key="play"):
             st.success("▶️ Playing...")
-    
+
     # Pause
     with media_controls[3]:
         if carbon_button("", icon=CarbonIcons.HELP, button_type="secondary", key="pause"):
             st.info("⏸️ Paused")
-    
+
     # Next
     with media_controls[4]:
         if carbon_button("", icon=CarbonIcons.PLAY, button_type="ghost", key="next"):
@@ -505,13 +505,13 @@ with col1:
 
 with col2:
     st.write("**Quick Actions**")
-    
+
     if carbon_button("", icon=CarbonIcons.ADD, button_type="primary", is_default=True, key="fab_add"):
         st.success("Creating new item...")
-    
+
     if carbon_button("", icon=CarbonIcons.UPLOAD, button_type="secondary", key="fab_upload"):
         st.info("Upload dialog opened")
-    
+
     if carbon_button("", icon=CarbonIcons.SETTINGS, button_type="ghost", key="fab_settings"):
         st.info("Settings panel opened")
 
@@ -632,12 +632,12 @@ st.write(f"Step {st.session_state.wizard_step} of 3")
 if st.session_state.wizard_step == 1:
     st.subheader("Select Plan")
     plan = st.radio("Choose your plan", ["Basic", "Pro", "Enterprise"])
-    
+
 elif st.session_state.wizard_step == 2:
     st.subheader("Billing Information")
     card_number = st.text_input("Card Number")
     expiry = st.text_input("Expiry Date")
-    
+
 else:
     st.subheader("Confirm Order")
     st.success("Ready to complete your order!")
@@ -759,7 +759,7 @@ echo "Choose an example to run:"
 echo ""
 echo "Basic Examples:"
 echo "  1) Hello World"
-echo "  2) Button Types" 
+echo "  2) Button Types"
 echo "  3) With Icons"
 echo "  4) Default Button"
 echo "  5) Icon Only"

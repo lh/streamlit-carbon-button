@@ -16,7 +16,7 @@ approach = st.radio(
     "Choose approach:",
     ["Same base color + effects", "Different base color (e.g., blue primary)"],
     horizontal=True,
-    help="You can indicate default buttons with effects on the same color, or use a different base color"
+    help="You can indicate default buttons with effects on the same color, or use a different base color",
 )
 
 # Add the CSS animations
@@ -29,7 +29,8 @@ else:
     button_color = "white"
     button_hover_bg = "#0043ce"
 
-st.markdown(f"""
+st.markdown(
+    f"""
 <style>
 /* Animation definitions */
 @keyframes pulse {{
@@ -122,39 +123,54 @@ st.markdown(f"""
     }}
 }}
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # Show CSS mock-ups first
 st.header("1. Static Style Options (No Animation)")
 if approach == "Same base color + effects":
-    st.write("These static styles are applied to buttons with the same base color as regular buttons:")
+    st.write(
+        "These static styles are applied to buttons with the same base color as regular buttons:"
+    )
 else:
-    st.write("These show default buttons with a different base color (blue) plus static effects:")
+    st.write(
+        "These show default buttons with a different base color (blue) plus static effects:"
+    )
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="demo-container">
         <div class="button-demo ring-demo">Get Started</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
     st.caption("**Teal Ring**: Border indicator")
 
 with col2:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="demo-container">
         <div class="button-demo elevated-demo">Get Started</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
     st.caption("**Shadow**: Classic elevation")
 
 with col3:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="demo-container">
         <div class="button-demo teal-shadow-demo">Get Started</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
     st.caption("**Teal Shadow**: Colored elevation")
 
 st.divider()
@@ -165,27 +181,36 @@ st.write("You mentioned you don't prefer these, but showing for completeness:")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="demo-container">
         <div class="button-demo pulse-demo">Get Started</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
     st.caption("**Pulse**: Scale animation")
 
 with col2:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="demo-container">
         <div class="button-demo glow-demo">Get Started</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
     st.caption("**Glow**: Animated shadow")
 
 with col3:
-    st.markdown("""
+    st.markdown(
+        """
     <div class="demo-container">
         <div class="button-demo breathe-demo">Get Started</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
     st.caption("**Breathe**: Gentle scale")
 
 st.divider()
@@ -202,12 +227,17 @@ with col1:
     st.text_input("Enter your email", placeholder="you@example.com", key="email_demo")
 
 with col2:
-    st.markdown("""
+    st.markdown(
+        """
     <div style="text-align: center;">
         <div class="button-demo teal-shadow-demo" style="margin-bottom: 0.5rem;">Subscribe</div>
     </div>
-    """, unsafe_allow_html=True)
-    if carbon_button("Subscribe", key="sub1", button_type="primary", icon=CarbonIcons.SUCCESS):
+    """,
+        unsafe_allow_html=True,
+    )
+    if carbon_button(
+        "Subscribe", key="sub1", button_type="primary", icon=CarbonIcons.SUCCESS
+    ):
         st.success("Subscribed!")
     st.caption("↑ Teal shadow style")
 
@@ -224,12 +254,17 @@ with col1:
         st.info("Saved")
 
 with col2:
-    st.markdown("""
+    st.markdown(
+        """
     <div style="text-align: center;">
         <div class="button-demo ring-demo" style="margin-bottom: 0.5rem;">Publish</div>
     </div>
-    """, unsafe_allow_html=True)
-    if carbon_button("Publish", key="pub", button_type="primary", icon=CarbonIcons.UPLOAD):
+    """,
+        unsafe_allow_html=True,
+    )
+    if carbon_button(
+        "Publish", key="pub", button_type="primary", icon=CarbonIcons.UPLOAD
+    ):
         st.success("Published!")
     st.caption("↑ Teal ring style")
 
@@ -246,17 +281,18 @@ st.divider()
 # Implementation notes
 st.header("4. Implementation Approach")
 
-st.info("""
+st.info(
+    """
 **To implement these animations in the actual component:**
 
 1. **Add to CarbonButton.tsx**:
    - New props: `isDefault` and `defaultStyle`
    - Apply animation classes to the button element
-   
+
 2. **Add CSS animations to index.css**:
    - Define the keyframe animations
    - Create modifier classes
-   
+
 3. **Python API**:
    ```python
    carbon_button(
@@ -265,7 +301,8 @@ st.info("""
        default_style="pulse"  # or glow, breathe, elevated, ring
    )
    ```
-""")
+"""
+)
 
 # Show side-by-side comparison
 st.header("5. Side-by-Side Comparison")
@@ -278,12 +315,15 @@ style_names = ["Teal Ring", "Shadow", "Teal Shadow"]
 for i, (col, style, name) in enumerate(zip(cols, styles, style_names)):
     with col:
         st.write(f"**{name}**")
-        st.markdown(f"""
+        st.markdown(
+            f"""
         <div class="demo-container">
             <div class="button-demo {style}-demo">Default</div>
         </div>
-        """, unsafe_allow_html=True)
-        
+        """,
+            unsafe_allow_html=True,
+        )
+
         # Regular button below for comparison
         carbon_button("Regular", key=f"compare_{i}", button_type="primary")
 
@@ -297,16 +337,20 @@ preference = st.radio(
     "Select your favorite default button style:",
     ["Teal Ring", "Shadow", "Teal Shadow", "None - keep it simple"],
     horizontal=True,
-    help="Based on your feedback, focusing on static styles"
+    help="Based on your feedback, focusing on static styles",
 )
 
 if preference != "None - keep it simple":
-    st.write(f"Great choice! The **{preference}** style would be perfect for indicating default actions.")
+    st.write(
+        f"Great choice! The **{preference}** style would be perfect for indicating default actions."
+    )
 
-st.info("""
+st.info(
+    """
 **Next Steps:**
 1. Choose your preferred animation style
 2. We'll implement it in the CarbonButton component
 3. Add the `is_default` prop to the Python API
 4. Test with real use cases
-""")
+"""
+)

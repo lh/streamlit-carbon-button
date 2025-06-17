@@ -20,7 +20,9 @@ with col2:
 
 with col3:
     st.write("With Icon")
-    if carbon_button("Click & Hold", key="test3", button_type="primary", icon=CarbonIcons.UPLOAD):
+    if carbon_button(
+        "Click & Hold", key="test3", button_type="primary", icon=CarbonIcons.UPLOAD
+    ):
         st.success("Clicked!")
 
 st.info("The button should turn teal (#50e4e0) when you click and hold it")

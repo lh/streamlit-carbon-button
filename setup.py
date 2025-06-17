@@ -1,8 +1,8 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import os
 
 # Read version from package
-version = "1.3.0"
+version = "1.4.0"
 
 # Use README_PYPI.md if it exists, otherwise fall back to README.md
 readme_file = "README_PYPI.md" if os.path.exists("README_PYPI.md") else "README.md"
@@ -17,7 +17,7 @@ Beautiful Carbon Design System buttons for your Streamlit apps!
 
 ## Features
 - 🎯 Carbon Design System styling
-- 🎨 Multiple button types: primary, secondary, danger, ghost  
+- 🎨 Multiple button types: primary, secondary, danger, ghost
 - 🔧 Icon support with 18 pre-defined Carbon icons
 - ✨ Default button indicator with teal shadow
 - 📱 Responsive and accessible

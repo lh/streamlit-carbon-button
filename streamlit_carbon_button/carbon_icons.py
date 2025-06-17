@@ -6,9 +6,13 @@ Icons are from IBM Carbon Design System (Apache 2.0 License)
 https://carbondesignsystem.com/
 """
 
+
 class CarbonIcons:
     """Pre-defined Carbon Design System icons (32x32)"""
-    
+
+    # Special invisible icon for spacing text-only buttons
+    INVISIBLE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"></svg>'
+
     UPLOAD = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4z"/><path d="M6 12l1.41 1.41L15 5.83V24h2V5.83l7.59 7.58L26 12 16 2 6 12z"/></svg>'
     DOWNLOAD = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M26 24v4H6v-4H4v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2v-4z"/><path d="M26 14l-1.41-1.41L17 20.17V2h-2v18.17l-7.59-7.58L6 14l10 10l10-10z"/></svg>'
     SAVE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27.71 9.29l-5-5A1 1 0 0 0 22 4H6a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V10a1 1 0 0 0-.29-.71zM12 6h8v6h-8zm8 20h-8v-8h8zm2 0v-8a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8H6V6h4v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6.41l4 4V26z"/></svg>'

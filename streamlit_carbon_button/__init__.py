@@ -24,10 +24,8 @@ else:
     # In production, use the built component
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend")
-    _component_func = components.declare_component(
-        "carbon_button", 
-        path=build_dir
-    )
+    _component_func = components.declare_component("carbon_button", path=build_dir)
+
 
 def carbon_button(
     label: str,
@@ -42,7 +40,7 @@ def carbon_button(
 ) -> bool:
     """
     Create a Carbon Design System button.
-    
+
     Parameters
     ----------
     label : str
@@ -66,23 +64,23 @@ def carbon_button(
         If True, the button will have a teal shadow to indicate it's the default action
     aria_label : str
         Accessibility label for screen readers (automatically set for icon-only buttons)
-        
+
     Returns
     -------
     bool
         True if the button was clicked, False otherwise
     """
     import streamlit as st
-    
+
     # Generate a unique key if not provided
     if key is None:
         key = f"carbon_button_{id(label)}"
-    
+
     # Store the previous click count in session state
     prev_clicks_key = f"__carbon_button_prev_{key}"
     if prev_clicks_key not in st.session_state:
         st.session_state[prev_clicks_key] = 0
-    
+
     # Call the React component
     component_value = _component_func(
         label=label,
@@ -96,21 +94,24 @@ def carbon_button(
         key=key,
         default=st.session_state[prev_clicks_key],  # Use previous value as default
     )
-    
+
     # Check if there was a new click
     clicked = False
-    if component_value is not None and component_value > st.session_state[prev_clicks_key]:
+    if (
+        component_value is not None
+        and component_value > st.session_state[prev_clicks_key]
+    ):
         clicked = True
         st.session_state[prev_clicks_key] = component_value
-    
+
     return clicked
+
 
 # Also export the raw function name for backward compatibility
 carbon_button_raw = carbon_button
 
-# Make the function available at package level
-__all__ = ['carbon_button', 'CarbonIcons']
-
-
 # Import Carbon icons from separate file
-from .carbon_icons import CarbonIcons
+from .carbon_icons import CarbonIcons  # noqa: E402
+
+# Make the function available at package level
+__all__ = ["carbon_button", "CarbonIcons"]

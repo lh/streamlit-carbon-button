@@ -78,7 +78,7 @@ pip install streamlit-carbon-button
 
 ### For Development Repository:
 - All source files
-- Build tools and configurations  
+- Build tools and configurations
 - Development dependencies
 - Test suites
 - Documentation for contributors

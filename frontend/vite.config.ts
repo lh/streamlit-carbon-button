@@ -5,23 +5,23 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  
+
   // Important: Set base to './' for Streamlit components
   base: './',
-  
+
   build: {
     // Output directory - keep as 'build' to match CRA structure
     outDir: 'build',
-    
+
     // Asset directory structure to match CRA output
     assetsDir: 'static',
-    
+
     // Generate sourcemaps for debugging
     sourcemap: true,
-    
+
     // Minify for production
     minify: 'terser',
-    
+
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html')
@@ -41,15 +41,15 @@ export default defineConfig({
       }
     }
   },
-  
+
   server: {
     // Development server configuration
     port: 3000,
     host: 'localhost',
-    
+
     // Enable CORS for Streamlit development
     cors: true,
-    
+
     // HMR configuration
     hmr: {
       protocol: 'ws',

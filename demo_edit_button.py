@@ -17,7 +17,9 @@ with col1:
         st.info("Primary edit clicked")
 
 with col2:
-    if carbon_button("Edit", icon=CarbonIcons.EDIT, button_type="secondary", key="edit2"):
+    if carbon_button(
+        "Edit", icon=CarbonIcons.EDIT, button_type="secondary", key="edit2"
+    ):
         st.info("Secondary edit clicked")
 
 with col3:
@@ -30,7 +32,9 @@ with col4:
 
 # Full width edit button
 st.write("Full width edit button:")
-if carbon_button("Edit Document", icon=CarbonIcons.EDIT, use_container_width=True, key="edit_full"):
+if carbon_button(
+    "Edit Document", icon=CarbonIcons.EDIT, use_container_width=True, key="edit_full"
+):
     st.success("Full width edit button clicked!")
 
 # Edit button with custom colors
@@ -41,7 +45,9 @@ custom_colors = {
     "hover_bg": "#388E3C",
     "hover_text": "#FFFFFF",
     "active_bg": "#1B5E20",
-    "active_text": "#FFFFFF"
+    "active_text": "#FFFFFF",
 }
-if carbon_button("Edit", icon=CarbonIcons.EDIT, colors=custom_colors, key="edit_custom"):
+if carbon_button(
+    "Edit", icon=CarbonIcons.EDIT, colors=custom_colors, key="edit_custom"
+):
     st.success("Custom edit button clicked!")

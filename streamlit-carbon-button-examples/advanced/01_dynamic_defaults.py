@@ -29,18 +29,14 @@ with col1:
         button_type="primary",
         icon=CarbonIcons.SUCCESS,
         is_default=is_valid,
-        disabled=not is_valid
+        disabled=not is_valid,
     ):
         st.success("Form submitted successfully!")
         st.balloons()
 
 with col2:
     # Clear is default when form is invalid
-    if carbon_button(
-        "Clear",
-        button_type="ghost",
-        is_default=not is_valid
-    ):
+    if carbon_button("Clear", button_type="ghost", is_default=not is_valid):
         st.rerun()
 
 if not is_valid:
@@ -51,7 +47,7 @@ st.divider()
 st.header("2. Multi-Step Wizard")
 
 # Initialize step
-if 'wizard_step' not in st.session_state:
+if "wizard_step" not in st.session_state:
     st.session_state.wizard_step = 1
 
 # Progress bar
@@ -63,12 +59,12 @@ st.write(f"Step {st.session_state.wizard_step} of 3")
 if st.session_state.wizard_step == 1:
     st.subheader("Select Plan")
     plan = st.radio("Choose your plan", ["Basic", "Pro", "Enterprise"])
-    
+
 elif st.session_state.wizard_step == 2:
     st.subheader("Billing Information")
     card_number = st.text_input("Card Number")
     expiry = st.text_input("Expiry Date")
-    
+
 else:
     st.subheader("Confirm Order")
     st.success("Ready to complete your order!")
@@ -85,11 +81,7 @@ with col1:
 with col2:
     if st.session_state.wizard_step < 3:
         # Next is default for steps 1-2
-        if carbon_button(
-            "Next →",
-            button_type="primary",
-            is_default=True
-        ):
+        if carbon_button("Next →", button_type="primary", is_default=True):
             st.session_state.wizard_step += 1
             st.rerun()
     else:
@@ -98,7 +90,7 @@ with col2:
             "Complete Order",
             button_type="primary",
             icon=CarbonIcons.SUCCESS,
-            is_default=True
+            is_default=True,
         ):
             st.success("Order completed! 🎉")
             st.session_state.wizard_step = 1
@@ -114,17 +106,13 @@ st.divider()
 st.header("3. Document Save State")
 
 # Initialize state
-if 'doc_saved' not in st.session_state:
+if "doc_saved" not in st.session_state:
     st.session_state.doc_saved = True
-if 'doc_content' not in st.session_state:
+if "doc_content" not in st.session_state:
     st.session_state.doc_content = "Initial content..."
 
 # Document editor
-new_content = st.text_area(
-    "Document",
-    value=st.session_state.doc_content,
-    height=150
-)
+new_content = st.text_area("Document", value=st.session_state.doc_content, height=150)
 
 # Detect changes
 has_changes = new_content != st.session_state.doc_content
@@ -145,7 +133,7 @@ with col1:
         icon=CarbonIcons.SAVE,
         button_type="primary",
         is_default=has_changes,
-        disabled=not has_changes
+        disabled=not has_changes,
     ):
         st.session_state.doc_content = new_content
         st.success("Document saved!")
@@ -158,7 +146,7 @@ with col2:
         icon=CarbonIcons.UPLOAD,
         button_type="secondary",
         is_default=not has_changes,
-        disabled=has_changes
+        disabled=has_changes,
     ):
         st.info("Document published!")
 
@@ -168,7 +156,8 @@ with col3:
 
 # Tips
 st.divider()
-st.info("""
+st.info(
+    """
 **Dynamic Default Button Patterns:**
 
 🔄 **State-based**: Use session state to track which action should be primary
@@ -177,4 +166,5 @@ st.info("""
 💾 **Save indicators**: Make save default when there are unsaved changes
 
 Remember: Only one button should be default at a time in each context!
-""")
+"""
+)

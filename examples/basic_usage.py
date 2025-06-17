@@ -25,7 +25,9 @@ with col2:
         st.info("Uploaded!")
 
 with col3:
-    if carbon_button("Delete", icon=CarbonIcons.DELETE, key="delete", button_type="danger"):
+    if carbon_button(
+        "Delete", icon=CarbonIcons.DELETE, key="delete", button_type="danger"
+    ):
         st.warning("Deleted!")
 
 # Icon-only buttons
@@ -47,8 +49,11 @@ for i, (icon, key, label) in enumerate(icons):
 
 # Full width button
 st.subheader("Full Width")
-if carbon_button("Process All Files", icon=CarbonIcons.PLAY, key="process", use_container_width=True):
+if carbon_button(
+    "Process All Files", icon=CarbonIcons.PLAY, key="process", use_container_width=True
+):
     with st.spinner("Processing..."):
         import time
+
         time.sleep(1)
     st.success("Complete!")

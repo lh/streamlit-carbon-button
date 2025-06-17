@@ -38,10 +38,10 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.write("**Standard button**")
     if carbon_button(
-        "Submit", 
+        "Submit",
         key="explicit1",
         button_type="primary",
-        aria_label="Submit the application form"
+        aria_label="Submit the application form",
     ):
         st.success("Form submitted!")
 
@@ -50,8 +50,8 @@ with col2:
     if carbon_button(
         "Save",
         icon=CarbonIcons.SAVE,
-        key="explicit2", 
-        aria_label="Save your work to cloud storage"
+        key="explicit2",
+        aria_label="Save your work to cloud storage",
     ):
         st.success("Saved to cloud!")
 
@@ -62,7 +62,7 @@ with col3:
         icon=CarbonIcons.CLOSE,
         key="explicit3",
         button_type="danger",
-        aria_label="Close dialog and discard changes"
+        aria_label="Close dialog and discard changes",
     ):
         st.error("Dialog closed!")
 
@@ -86,14 +86,14 @@ for col, (label, icon, aria, caption) in zip(toolbar, toolbar_buttons):
     with col:
         btn_type = "primary" if caption == "Save" else "ghost"
         is_def = caption == "Save"
-        
+
         if carbon_button(
             label,
             icon=icon,
             button_type=btn_type,
             is_default=is_def,
             aria_label=aria,
-            key=f"toolbar_{caption}"
+            key=f"toolbar_{caption}",
         ):
             st.toast(f"{aria}")
         st.caption(caption)
@@ -102,21 +102,25 @@ for col, (label, icon, aria, caption) in zip(toolbar, toolbar_buttons):
 st.header("4. Dynamic ARIA Labels")
 st.write("ARIA labels can change based on state")
 
-if 'item_count' not in st.session_state:
+if "item_count" not in st.session_state:
     st.session_state.item_count = 0
 
 col1, col2 = st.columns(2)
 
 with col1:
     # Dynamic aria label based on count
-    aria_text = f"Shopping cart with {st.session_state.item_count} items" if st.session_state.item_count > 0 else "Shopping cart is empty"
-    
+    aria_text = (
+        f"Shopping cart with {st.session_state.item_count} items"
+        if st.session_state.item_count > 0
+        else "Shopping cart is empty"
+    )
+
     if carbon_button(
         f"Cart ({st.session_state.item_count})",
         icon=CarbonIcons.CHART_BAR,
         button_type="secondary",
         aria_label=aria_text,
-        key="cart"
+        key="cart",
     ):
         st.info(aria_text)
 
@@ -127,10 +131,11 @@ with col2:
 
 # Info section
 st.divider()
-st.info("""
+st.info(
+    """
 **How ARIA Labels Work in Carbon Buttons:**
 
-1. **Automatic for icon-only**: When you create an icon-only button with `carbon_button("Save", icon=...)`, 
+1. **Automatic for icon-only**: When you create an icon-only button with `carbon_button("Save", icon=...)`,
    the label "Save" becomes the ARIA label automatically
 
 2. **Explicit override**: Use `aria_label="Custom description"` to provide more context
@@ -139,7 +144,7 @@ st.info("""
    - Icon-only buttons should always have descriptive labels
    - Add context about what will happen ("Save document to cloud" vs just "Save")
    - Update dynamically for stateful buttons (e.g., "3 items in cart")
-   
+
 4. **Testing**: Use a screen reader or browser dev tools to verify ARIA labels
 
 Example:
@@ -147,26 +152,32 @@ Example:
 # Icon-only with automatic ARIA
 carbon_button("Delete item", icon=CarbonIcons.DELETE)
 
-# Custom ARIA for more context  
+# Custom ARIA for more context
 carbon_button("Submit", aria_label="Submit job application form")
 ```
-""")
+"""
+)
 
 # Developer note
 with st.expander("🔧 Implementation Details"):
-    st.code("""
+    st.code(
+        """
 // In React component:
 const computedAriaLabel = ariaLabel || (isIconOnly ? label || "Icon button" : undefined)
 
 <button aria-label={computedAriaLabel}>
     ...
 </button>
-    """, language="javascript")
-    
-    st.write("""
+    """,
+        language="javascript",
+    )
+
+    st.write(
+        """
     The logic:
     1. If `aria_label` is explicitly provided, use it
     2. Else if button is icon-only, use the `label` as aria-label
     3. Else if no text at all, use "Icon button" as fallback
     4. For buttons with visible text, no aria-label needed (text is already accessible)
-    """)
+    """
+    )

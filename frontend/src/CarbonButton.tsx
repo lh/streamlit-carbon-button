@@ -16,7 +16,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
   public componentDidMount() {
     console.log("CarbonButton mounted with props:", this.props)
     console.log("Args from Streamlit:", this.props.args)
-    
+
     // CRITICAL: Set initial value from default prop
     const initialValue = this.props.args?.default || 0
     this.setState({ numClicks: initialValue }, () => {
@@ -25,7 +25,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
       // IMPORTANT: Set frame height after component mounts
       Streamlit.setFrameHeight()
     })
-    
+
     // Add global styles for SVG icons
     const style = document.createElement('style')
     style.textContent = `
@@ -54,22 +54,22 @@ class CarbonButton extends StreamlitComponentBase<State> {
       }
     `
     document.head.appendChild(style)
-    
+
     // Check for dark mode
     const checkDarkMode = () => {
       const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
       this.setState({ isDarkMode: isDark })
     }
-    
+
     // Initial check
     checkDarkMode()
-    
+
     // Listen for changes
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkDarkMode)
     }
   }
-  
+
   public componentWillUnmount() {
     // Clean up listener
     if (window.matchMedia) {
@@ -91,25 +91,25 @@ class CarbonButton extends StreamlitComponentBase<State> {
     if (!this.props.args) {
       return <div style={{ padding: "10px", border: "1px solid #ccc" }}>Loading Carbon Button...</div>
     }
-    
+
     const { label, icon, buttonType, disabled, useContainerWidth, colors, isDefault, ariaLabel } = this.props.args
-    
+
     // Debug: Log what we're receiving
-    console.log("Carbon Button Debug:", { 
-      label, 
+    console.log("Carbon Button Debug:", {
+      label,
       hasIcon: !!icon,
       iconLength: icon?.length,
-      iconPreview: icon?.substring(0, 100), 
+      iconPreview: icon?.substring(0, 100),
       buttonType,
-      allArgs: this.props.args 
+      allArgs: this.props.args
     })
-    
+
     // Extra debug - check if icon contains SVG
     if (icon) {
       console.log("Icon contains <svg>:", icon.includes('<svg'))
       console.log("Icon contains viewBox:", icon.includes('viewBox'))
     }
-    
+
     const hasIcon = icon && icon.trim() !== ''
     const hasLabel = label && label.trim() !== ''
     const isIconOnly = hasIcon && !hasLabel
@@ -128,7 +128,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
     // Apply teal shadow for default buttons
     let boxShadow = buttonType === "secondary" ? "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05)" : "none"
     let transform = "translateY(0)"
-    
+
     if (isDefault && !disabled) {
       boxShadow = "0 4px 12px rgba(80, 228, 224, 0.4)"
       transform = "translateY(-2px)"
@@ -173,9 +173,9 @@ class CarbonButton extends StreamlitComponentBase<State> {
       >
         <div className="carbon-button-content">
           {hasIcon && (
-            <span 
+            <span
               className="carbon-button-icon"
-              dangerouslySetInnerHTML={{ __html: icon }} 
+              dangerouslySetInnerHTML={{ __html: icon }}
             />
           )}
           {hasLabel && <span>{label}</span>}
@@ -189,7 +189,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
     if (this.props.args.colors?.rest_bg && type === "secondary") {
       return this.props.args.colors.rest_bg
     }
-    
+
     // Different colors for light/dark mode - subtle palette
     const lightColors: { [key: string]: string } = {
       primary: "#e6e2e2",      // Changed primary to your subtle grey
@@ -197,14 +197,14 @@ class CarbonButton extends StreamlitComponentBase<State> {
       danger: "#f4e3e3",       // Softer danger color
       ghost: "transparent",
     }
-    
+
     const darkColors: { [key: string]: string } = {
       primary: "#ecdcdc",      // Your pink-grey for dark mode
       secondary: "#ecdcdc",    // Your custom dark mode color
       danger: "#f0d0d0",       // Lighter pink for danger in dark mode
       ghost: "transparent",
     }
-    
+
     const colors = this.state.isDarkMode ? darkColors : lightColors
     return colors[type] || colors.primary
   }
@@ -214,7 +214,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
     if (this.props.args.colors?.rest_text && type === "secondary") {
       return this.props.args.colors.rest_text
     }
-    
+
     // Different text colors for light/dark mode
     if (this.state.isDarkMode) {
       const darkModeColors: { [key: string]: string } = {
@@ -225,7 +225,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
       }
       return darkModeColors[type] || darkModeColors.primary
     }
-    
+
     const colors: { [key: string]: string } = {
       primary: "#1a1a1a",      // Dark text on light grey
       secondary: "#1a1a1a",    // Almost black for maximum contrast
@@ -240,21 +240,21 @@ class CarbonButton extends StreamlitComponentBase<State> {
     if (this.props.args.colors?.rest_border && type === "secondary") {
       return this.props.args.colors.rest_border
     }
-    
+
     const lightColors: { [key: string]: string } = {
       primary: "#cccccc",      // Subtle grey border
       secondary: "#cccccc",
       danger: "#e0c0c0",       // Soft pink border
       ghost: "#e0e0e0",        // Light grey for ghost
     }
-    
+
     const darkColors: { [key: string]: string } = {
       primary: "#404040",      // Dark grey border
       secondary: "#404040",    // Your dark mode border
       danger: "#5a4040",       // Muted red border
       ghost: "#404040",        // Dark grey for ghost
     }
-    
+
     const colors = this.state.isDarkMode ? darkColors : lightColors
     return colors[type] || colors.primary
   }
@@ -264,88 +264,88 @@ class CarbonButton extends StreamlitComponentBase<State> {
     if (this.props.args.colors?.hover_bg && type === "secondary") {
       return this.props.args.colors.hover_bg
     }
-    
+
     const lightColors: { [key: string]: string } = {
       primary: "#f5f5f5",      // Light grey hover
       secondary: "#f5f5f5",    // Light mode hover
       danger: "#faf0f0",       // Light pink hover
       ghost: "#fafafa",        // Very light grey
     }
-    
+
     const darkColors: { [key: string]: string } = {
       primary: "#4a4a4a",      // Medium grey hover
       secondary: "#f6f4f4",    // Dark mode hover
       danger: "#5a4343",       // Muted red hover
       ghost: "#2a2a2a",        // Dark grey hover
     }
-    
+
     const colors = this.state.isDarkMode ? darkColors : lightColors
     return colors[type] || colors.primary
   }
-  
+
   private getHoverTextColor = (type: string): string => {
     // Use custom colors if provided
     if (this.props.args.colors?.hover_text && type === "secondary") {
       return this.props.args.colors.hover_text
     }
-    
+
     return this.getTextColor(type)
   }
-  
+
   private getHoverBorderColor = (type: string): string => {
     // Use custom colors if provided
     if (this.props.args.colors?.hover_border && type === "secondary") {
       return this.props.args.colors.hover_border
     }
-    
+
     return this.getBorderColor(type)
   }
-  
+
   private getActiveBackgroundColor = (type: string): string => {
     // Use custom colors if provided
     if (this.props.args.colors?.active_bg && type === "secondary") {
       return this.props.args.colors.active_bg
     }
-    
+
     const lightColors: { [key: string]: string } = {
       primary: "#50e4e0",      // Teal accent for all buttons
       secondary: "#50e4e0",    // Light mode teal
       danger: "#e4807a",       // Soft coral for danger
       ghost: "#50e4e0",        // Teal for ghost too
     }
-    
+
     const darkColors: { [key: string]: string } = {
       primary: "#67cccc",      // Darker teal for dark mode
       secondary: "#67cccc",    // Dark mode teal
       danger: "#cc6666",       // Muted red
       ghost: "#67cccc",        // Teal for ghost
     }
-    
+
     const colors = this.state.isDarkMode ? darkColors : lightColors
     return colors[type] || colors.primary
   }
-  
+
   private getActiveTextColor = (type: string): string => {
     // Use custom colors if provided
     if (this.props.args.colors?.active_text && type === "secondary") {
       return this.props.args.colors.active_text
     }
-    
+
     // Dark mode uses black text on teal (as per your design)
     if (this.state.isDarkMode) {
       return "#000000"
     }
-    
+
     // Light mode uses white text on teal
     return "#ffffff"
   }
-  
+
   private getActiveBorderColor = (type: string): string => {
     // Use custom colors if provided
     if (this.props.args.colors?.active_border && type === "secondary") {
       return this.props.args.colors.active_border
     }
-    
+
     return this.getBorderColor(type)
   }
 
@@ -353,12 +353,12 @@ class CarbonButton extends StreamlitComponentBase<State> {
     const button = e.currentTarget
     const type = this.props.args.buttonType || "primary"
     const isDefault = this.props.args.isDefault
-    
+
     if (isHover) {
       button.style.backgroundColor = this.getHoverBackgroundColor(type)
       button.style.color = this.getHoverTextColor(type)
       button.style.borderColor = this.getHoverBorderColor(type)
-      
+
       if (isDefault) {
         // Enhanced hover for default buttons
         button.style.transform = "translateY(-3px)"
@@ -371,7 +371,7 @@ class CarbonButton extends StreamlitComponentBase<State> {
       button.style.backgroundColor = this.getBackgroundColor(type)
       button.style.color = this.getTextColor(type)
       button.style.borderColor = this.getBorderColor(type)
-      
+
       if (isDefault) {
         // Return to default button state
         button.style.transform = "translateY(-2px)"
@@ -382,18 +382,18 @@ class CarbonButton extends StreamlitComponentBase<State> {
       }
     }
   }
-  
+
   private handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget
     const type = this.props.args.buttonType || "primary"
-    
+
     button.style.backgroundColor = this.getActiveBackgroundColor(type)
     button.style.color = this.getActiveTextColor(type)
     button.style.borderColor = this.getActiveBorderColor(type)
     button.style.transform = "translateY(0)"
     button.style.boxShadow = "inset 0 1px 2px rgba(0, 0, 0, 0.2)"
   }
-  
+
   private handleMouseUp = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Return to hover state since mouse is still over the button
     this.handleHover(e, true)

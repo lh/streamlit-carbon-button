@@ -25,7 +25,13 @@ tools = [
 
 for col, (name, icon, btn_type, is_default) in zip(toolbar, tools):
     with col:
-        if carbon_button("", icon=icon, button_type=btn_type, is_default=is_default, key=f"tool_{name}"):
+        if carbon_button(
+            "",
+            icon=icon,
+            button_type=btn_type,
+            is_default=is_default,
+            key=f"tool_{name}",
+        ):
             st.toast(f"{name}")
         st.caption(name)
 
@@ -37,27 +43,37 @@ col1, col2, col3 = st.columns([1, 3, 1])
 
 with col2:
     media_controls = st.columns(5)
-    
+
     # Previous
     with media_controls[0]:
         if carbon_button("", icon=CarbonIcons.PLAY, button_type="ghost", key="prev"):
             st.info("⏮️ Previous track")
-    
+
     # Stop
     with media_controls[1]:
-        if carbon_button("", icon=CarbonIcons.CLOSE, button_type="secondary", key="stop"):
+        if carbon_button(
+            "", icon=CarbonIcons.CLOSE, button_type="secondary", key="stop"
+        ):
             st.info("⏹️ Stopped")
-    
+
     # Play (default)
     with media_controls[2]:
-        if carbon_button("", icon=CarbonIcons.PLAY, button_type="primary", is_default=True, key="play"):
+        if carbon_button(
+            "",
+            icon=CarbonIcons.PLAY,
+            button_type="primary",
+            is_default=True,
+            key="play",
+        ):
             st.success("▶️ Playing...")
-    
+
     # Pause
     with media_controls[3]:
-        if carbon_button("", icon=CarbonIcons.HELP, button_type="secondary", key="pause"):
+        if carbon_button(
+            "", icon=CarbonIcons.HELP, button_type="secondary", key="pause"
+        ):
             st.info("⏸️ Paused")
-    
+
     # Next
     with media_controls[4]:
         if carbon_button("", icon=CarbonIcons.PLAY, button_type="ghost", key="next"):
@@ -75,14 +91,20 @@ with col1:
 
 with col2:
     st.write("**Quick Actions**")
-    
-    if carbon_button("", icon=CarbonIcons.ADD, button_type="primary", is_default=True, key="fab_add"):
+
+    if carbon_button(
+        "", icon=CarbonIcons.ADD, button_type="primary", is_default=True, key="fab_add"
+    ):
         st.success("Creating new item...")
-    
-    if carbon_button("", icon=CarbonIcons.UPLOAD, button_type="secondary", key="fab_upload"):
+
+    if carbon_button(
+        "", icon=CarbonIcons.UPLOAD, button_type="secondary", key="fab_upload"
+    ):
         st.info("Upload dialog opened")
-    
-    if carbon_button("", icon=CarbonIcons.SETTINGS, button_type="ghost", key="fab_settings"):
+
+    if carbon_button(
+        "", icon=CarbonIcons.SETTINGS, button_type="ghost", key="fab_settings"
+    ):
         st.info("Settings panel opened")
 
 # Icon grid
@@ -118,13 +140,16 @@ for i in range(0, len(all_icons), 6):
         if i + j < len(all_icons):
             name, icon = all_icons[i + j]
             with col:
-                if carbon_button("", icon=icon, button_type="ghost", key=f"grid_{name}"):
+                if carbon_button(
+                    "", icon=icon, button_type="ghost", key=f"grid_{name}"
+                ):
                     st.code(f"CarbonIcons.{name.upper()}")
                 st.caption(name)
 
 # Tips
 st.divider()
-st.info("""
+st.info(
+    """
 **Tips for Icon-Only Buttons:**
 
 💡 Always include captions or tooltips for accessibility
@@ -132,4 +157,5 @@ st.info("""
 📐 Icon-only buttons are perfect squares with equal padding
 🎨 Mix button types to create visual hierarchy
 ♿ Consider adding aria-labels for screen readers (future feature)
-""")
+"""
+)

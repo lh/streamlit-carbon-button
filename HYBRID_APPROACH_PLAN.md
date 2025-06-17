@@ -5,7 +5,7 @@
 We'll create three complementary resources:
 
 1. **Main Development Repository** (`streamlit-carbon-button-dev`)
-2. **Examples Repository** (`streamlit-carbon-button-examples`)  
+2. **Examples Repository** (`streamlit-carbon-button-examples`)
 3. **PyPI Package** (`streamlit-carbon-button`)
 
 ## 1. Main Development Repository
@@ -48,7 +48,7 @@ streamlit-carbon-button-dev/
 - Comprehensive developer documentation
 - Migration guides (from CRA to Vite)
 
-## 2. Examples Repository  
+## 2. Examples Repository
 
 **Repository**: `github.com/yourusername/streamlit-carbon-button-examples`
 
@@ -185,7 +185,7 @@ with col2:
    - Prepare for PyPI publishing
    - Write developer docs
 
-2. **Week 2**: Create examples repository  
+2. **Week 2**: Create examples repository
    - Port all test files to examples
    - Add real-world examples
    - Create README with screenshots

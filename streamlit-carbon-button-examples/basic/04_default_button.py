@@ -6,7 +6,9 @@ import streamlit as st
 from streamlit_carbon_button import carbon_button, CarbonIcons
 
 st.title("Default Button Feature")
-st.write("Use `is_default=True` to add a subtle teal shadow that indicates the primary action.")
+st.write(
+    "Use `is_default=True` to add a subtle teal shadow that indicates the primary action."
+)
 
 # Simple example
 st.subheader("Basic Usage")
@@ -37,14 +39,14 @@ with st.form("login_form"):
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     remember = st.checkbox("Remember me")
-    
+
     col1, col2 = st.columns([1, 1])
-    
+
     with col1:
         # Using form_submit_button for forms
         if st.form_submit_button("Sign In", type="primary"):
             st.success(f"Welcome back, {username}!")
-    
+
     with col2:
         if st.form_submit_button("Reset Password", help="Click to reset password"):
             st.info("Password reset link sent!")
@@ -55,14 +57,14 @@ st.subheader("Dynamic Default Button")
 st.write("The default button can change based on application state")
 
 # Initialize state
-if 'edit_mode' not in st.session_state:
+if "edit_mode" not in st.session_state:
     st.session_state.edit_mode = False
 
 # Content area
 content = st.text_area(
     "Document content",
     value="Edit this text to see the default button change...",
-    disabled=not st.session_state.edit_mode
+    disabled=not st.session_state.edit_mode,
 )
 
 # Dynamic buttons
@@ -74,7 +76,7 @@ with col1:
         "Edit",
         icon=CarbonIcons.SETTINGS,
         button_type="secondary",
-        is_default=not st.session_state.edit_mode
+        is_default=not st.session_state.edit_mode,
     ):
         st.session_state.edit_mode = True
         st.rerun()
@@ -86,20 +88,26 @@ with col2:
         icon=CarbonIcons.SAVE,
         button_type="primary",
         is_default=st.session_state.edit_mode,
-        disabled=not st.session_state.edit_mode
+        disabled=not st.session_state.edit_mode,
     ):
         st.session_state.edit_mode = False
         st.success("Document saved!")
         st.rerun()
 
 with col3:
-    if carbon_button("Cancel", key="cancel_edit", button_type="ghost", disabled=not st.session_state.edit_mode):
+    if carbon_button(
+        "Cancel",
+        key="cancel_edit",
+        button_type="ghost",
+        disabled=not st.session_state.edit_mode,
+    ):
         st.session_state.edit_mode = False
         st.rerun()
 
 # Visual guide
 st.divider()
-st.info("""
+st.info(
+    """
 **Default Button Best Practices:**
 
 ✅ **Do:**
@@ -113,4 +121,5 @@ st.info("""
 - Use for cancel or close actions
 
 The teal shadow color matches the button's active state, creating visual consistency.
-""")
+"""
+)
